@@ -13,10 +13,12 @@ phases:
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
       - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
+      - echo "Repository URI: $REPOSITORY_URI"
+      - echo "Image Tag: $IMAGE_TAG"
       - >
         TASK_DEFINITION_ARN=$(aws ecs register-task-definition \
           --family WebAppTaskDefinition \
-          --container-definitions '[{ "name": "web-app-container", "image": "'$REPOSITORY_URI:$IMAGE_TAG'", "cpu": 0, "portMappings": [{"containerPort": 80, "hostPort": 80, "protocol": "tcp"}], "essential": true }]' \
+          --container-definitions "[{ \"name\": \"web-app-container\", \"image\": \"$REPOSITORY_URI:$IMAGE_TAG\", \"cpu\": 0, \"portMappings\": [{\"containerPort\": 80, \"hostPort\": 80, \"protocol\": \"tcp\"}], \"essential\": true }]" \
           --query 'taskDefinition.taskDefinitionArn' --output text)
       - echo "TaskDefinitionArn=$TASK_DEFINITION_ARN" > task_definition_arn.txt
 
