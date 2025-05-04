@@ -1,14 +1,12 @@
 {
     "family": "WebAppTaskDefinition",
-    "networkMode": "awsvpc",
     "executionRoleArn": "arn:aws:iam::631204218401:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
     "containerDefinitions": [
       {
         "name": "web-app-container",
-        "image": "<IMAGE1_NAME>",
+        "image": "IMAGE1_NAME",
         "cpu": 0,
-        "memory": 512,
-        "essential": true,
         "portMappings": [
           {
             "containerPort": 80,
@@ -16,6 +14,7 @@
             "protocol": "tcp"
           }
         ],
+        "essential": true,
         "logConfiguration": {
           "logDriver": "awslogs",
           "options": {
@@ -26,7 +25,9 @@
         }
       }
     ],
-    "requiresCompatibilities": ["FARGATE"],
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
     "cpu": "512",
     "memory": "1024",
     "runtimePlatform": {
@@ -34,4 +35,3 @@
       "operatingSystemFamily": "LINUX"
     }
 }
-  
