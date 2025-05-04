@@ -22,8 +22,10 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"web-app-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
 
+
 artifacts:
   files:
     - appspec.yaml
+    - taskdef.json
     - imageDetail.json
 
