@@ -1,0 +1,37 @@
+{
+    "family": "WebAppTaskDefinition",
+    "executionRoleArn": "arn:aws:iam::631204218401:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+      {
+        "name": "web-app-container",
+        "image": "IMAGE1_NAME",
+        "cpu": 0,
+        "portMappings": [
+          {
+            "containerPort": 80,
+            "hostPort": 80,
+            "protocol": "tcp"
+          }
+        ],
+        "essential": true,
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/WebAppTaskDefinition",
+            "awslogs-region": "eu-west-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
+      }
+    ],
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "1024",
+    "runtimePlatform": {
+      "cpuArchitecture": "X86_64",
+      "operatingSystemFamily": "LINUX"
+    }
+}
