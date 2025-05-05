@@ -1,0 +1,29 @@
+{
+  "family" "ebppaskefinition",
+  "networkode" "awsvpc",
+  "eecutionolern" "arnawsiamrole/ecsaskecutionole",
+  "requiresompatibilities" ""],
+  "cpu" "",
+  "memory" "",
+  "containerefinitions" 
+      {
+          "name" "web-app-container",
+          "image" "",  
+          "essential" true,
+          "portappings" 
+              {
+                  "containerort" ,
+                  "protocol" "tcp"
+              }
+          ],
+          "logonfiguration" {
+              "logriver" "awslogs",
+              "options" {
+                  "awslogs-group" "/ecs/ebpp",
+                  "awslogs-region" "eu-west-",
+                  "awslogs-stream-prefi" "ecs"
+              }
+          }
+      }
+  ]
+}
