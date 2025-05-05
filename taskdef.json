@@ -1,4 +1,5 @@
 {
+  "taskDefinitionArn": "arn:aws:ecs:eu-west-1:631204218401:task-definition/WebAppBGNTaskDefinition:1",
   "family": "WebAppBGNTaskDefinition",
   "containerDefinitions": [
       {
