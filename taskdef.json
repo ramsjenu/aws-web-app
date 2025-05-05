@@ -1,5 +1,5 @@
 {
-  "family": "WebAppBGTaskDefinition",
+  "family": "WebAppBGNTaskDefinition",
   "containerDefinitions": [
       {
           "name": "web-app-container",
@@ -23,7 +23,7 @@
           "logConfiguration": {
               "logDriver": "awslogs",
               "options": {
-                  "awslogs-group": "/ecs/WebAppBGTaskDefinition",
+                  "awslogs-group": "/ecs/WebAppBGNTaskDefinition",
                   "mode": "non-blocking",
                   "awslogs-create-group": "true",
                   "max-buffer-size": "25m",
