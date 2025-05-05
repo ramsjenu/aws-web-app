@@ -1,6 +1,6 @@
 {
     "pipeline": {
-        "name": "aws-web-app-pipeline",
+        "name": "web-app-pipeline",
         "roleArn": "arn:aws:iam::631204218401:role/service-role/AWSCodePipelineServiceRole-eu-west-1-aws-web-app-pipeline",
         "artifactStore": {
             "type": "S3",
