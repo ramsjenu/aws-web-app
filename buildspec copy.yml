@@ -20,10 +20,11 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"web-app-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"web-app-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
 
 artifacts:
   files:
     - appspec.yaml
     - taskdef.json
-    - imagedefinitions.json
+    - imageDetail.json
+

@@ -1,40 +1,31 @@
 {
-    "family": "WebAppTD",
-    "networkMode": "awsvpc",
-    "executionRoleArn": "arn:aws:iam::631204218401:role/ecsTaskExecutionRole",
-    "requiresCompatibilities": ["FARGATE"],
-    "cpu": "512",
-    "memory": "1024",
-    "runtimePlatform": {
-      "cpuArchitecture": "X86_64",
-      "operatingSystemFamily": "LINUX"
-    },
-    "containerDefinitions": [
-      {
-        "name": "web-app-container",
-        "image": "",
-        "cpu": 0,
-        "essential": true,
-        "portMappings": [
-          {
-            "containerPort": 80,
-            "hostPort": 80,
-            "protocol": "tcp",
-            "appProtocol": "http"
-          }
-        ],
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "options": {
-            "awslogs-group": "/ecs/WebAppTD",
-            "mode": "non-blocking",
-            "awslogs-create-group": "true",
-            "max-buffer-size": "25m",
-            "awslogs-region": "eu-west-1",
-            "awslogs-stream-prefix": "ecs"
-          }
+  "family": "WebAppTD",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::631204218401:role/ecsTaskExecutionRole",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "containerDefinitions": [
+    {
+      "name": "web-app-container",
+      "image": "IMAGE1_NAME",
+      "cpu": 0,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/WebAppTD",
+          "awslogs-region": "eu-west-1",
+          "awslogs-stream-prefix": "ecs"
         }
       }
-    ]
+    }
+  ]
 }
-  
