@@ -3,7 +3,7 @@
   "containerDefinitions": [
       {
           "name": "web-app-container",
-          "image": "IMAGE",
+          "image": "IMAGE_NAME",
           "cpu": 0,
           "portMappings": [
               {
