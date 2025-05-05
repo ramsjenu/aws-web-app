@@ -12,7 +12,7 @@
     "containerDefinitions": [
       {
         "name": "web-app-container",
-        "image": "IMAGE1_NAME",
+        "image": "",
         "cpu": 0,
         "essential": true,
         "portMappings": [
