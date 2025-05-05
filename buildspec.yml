@@ -22,6 +22,7 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"web-app-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
+      - jq '.containerDefinitions[].image = "IMAGE1"' taskdef.json > taskdef-out.json && mv taskdef-out.json taskdef.json
       - cat taskdef.json
 
 artifacts:
