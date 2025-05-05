@@ -1,5 +1,5 @@
 {
-    "family": "WebAppBGTaskDefinition",
+    "family": "WebAppBG1TaskDefinition",
     "networkMode": "awsvpc",
     "executionRoleArn": "arn:aws:iam::631204218401:role/ecsTaskExecutionRole",
     "requiresCompatibilities": ["FARGATE"],
