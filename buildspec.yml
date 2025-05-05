@@ -24,6 +24,8 @@ phases:
       - cat imageDefinitions.json
       - jq '.containerDefinitions[].image = "IMAGE1"' taskdef.json > taskdef-out.json && mv taskdef-out.json taskdef.json
       - cat taskdef.json
+      - cat taskdef.json | grep IMAGE1
+
 
 artifacts:
   files:

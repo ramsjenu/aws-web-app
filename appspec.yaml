@@ -3,7 +3,6 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "{{TaskDefinitionArn}}"
         LoadBalancerInfo:
           ContainerName: "web-app-container"
           ContainerPort: 80
