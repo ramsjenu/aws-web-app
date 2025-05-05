@@ -1,31 +1,57 @@
 {
   "family": "WebAppTD",
-  "networkMode": "awsvpc",
+  "containerDefinitions": [
+      {
+          "name": "web-app-container",
+          "image": "631204218401.dkr.ecr.eu-west-1.amazonaws.com/web-app-repo:latest",
+          "cpu": 0,
+          "portMappings": [
+              {
+                  "name": "web-app-container-80-tcp",
+                  "containerPort": 80,
+                  "hostPort": 80,
+                  "protocol": "tcp",
+                  "appProtocol": "http"
+              }
+          ],
+          "essential": true,
+          "environment": [
+              {
+                  "name": "TaskDefinitionArn",
+                  "value": "arn:aws:ecs:eu-west-1:631204218401:task-definition/WebAppTD:1"
+              }
+          ],
+          "environmentFiles": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "ulimits": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                 "awslogs-group": "/ecs/WebAppTD",
+                  "mode": "non-blocking",
+                  "awslogs-create-group": "true",
+                  "max-buffer-size": "25m",
+                  "awslogs-region": "eu-west-1",
+                  "awslogs-stream-prefix": "ecs"
+              },
+              "secretOptions": []
+          },
+          "systemControls": []
+      }
+  ],
   "executionRoleArn": "arn:aws:iam::631204218401:role/ecsTaskExecutionRole",
-  "requiresCompatibilities": ["FARGATE"],
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "placementConstraints": [],
+  "requiresCompatibilities": [
+      "FARGATE"
+  ],
   "cpu": "512",
   "memory": "1024",
-  "containerDefinitions": [
-    {
-      "name": "web-app-container",
-      "image": "631204218401.dkr.ecr.eu-west-1.amazonaws.com/web-app-repo:4f47c53:latest",
-      "cpu": 0,
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 80,
-          "hostPort": 80,
-          "protocol": "tcp"
-        }
-      ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/WebAppTD",
-          "awslogs-region": "eu-west-1",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
-    }
-  ]
-}
+  "runtimePlatform": {
+      "cpuArchitecture": "X86_64",
+      "operatingSystemFamily": "LINUX"
+  },
+  "enableFaultInjection": false
+} 
