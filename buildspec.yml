@@ -27,7 +27,8 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - echo Writing image definitions file...
       - printf '[{"name":"web-app-container1","imageUri":"%s"}]' $IMAGE_URI > imageDefinitions.json
-      - cat imageDefinitions.json
+      - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+      - cat imageDetail.json
       - . $CODEBUILD_SRC_DIR/image_uri.env
       - envsubst < taskdef.json > taskdef_final.json
       - cat taskdef_final.json
@@ -39,7 +40,7 @@ artifacts:
   files:
     - appspec.yaml
     - taskdef.json
-    - imageDefinitions.json
+    - imageDetail.json
   discard-paths: yes
 
 
