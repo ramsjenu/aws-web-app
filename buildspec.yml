@@ -8,10 +8,6 @@ phases:
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
       - IMAGE1_NAME=$REPOSITORY_URI:$IMAGE_TAG
-      - IMAGE_URI=$(cat imagedefinitions.json | jq -r '.[0].imageUri')
-      - echo "Image URI is $IMAGE_URI"
-      - export IMAGE_URI
-      - echo IMAGE_URI=$IMAGE_URI
 
   build:
     commands:
@@ -19,6 +15,7 @@ phases:
       - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
       - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
       - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
+      - echo "IMAGE_URI=$IMAGE_URI"
       - echo "IMAGE_URI=$IMAGE_URI" >> $CODEBUILD_SRC_DIR/image_uri.env
 
   post_build:
@@ -28,9 +25,9 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:latest
       - echo Writing image definitions file...
-      - envsubst < taskdef.json > taskdef_final.json
       - printf '[{"name":"web-app-container1","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
+      - envsubst < taskdef.json > taskdef_final.json
       - cat taskdef_final.json
       - echo $IMAGE1_NAME >> imagename.json
       - cat imagename.json
