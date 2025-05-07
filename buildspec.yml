@@ -9,11 +9,13 @@ phases:
       - REPOSITORY_URI=631204218401.dkr.ecr.eu-west-1.amazonaws.com/web-app-repo
       - export IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
       - echo "Built image URI: $IMAGE_URI"
+
   build:
     commands:
       - echo Building Docker image...
       - docker build -t $IMAGE_URI .
       - docker push $IMAGE_URI
+
   post_build:
     commands:
       - echo "[{\"name\":\"web-app-container1\",\"imageUri\":\"$IMAGE_URI\"}]" > imagedefinitions.json
