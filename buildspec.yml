@@ -18,6 +18,7 @@ phases:
 
   post_build:
     commands:
+      - IMAGE1_NAME=$REPOSITORY_URI:$IMAGE_TAG
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:latest
