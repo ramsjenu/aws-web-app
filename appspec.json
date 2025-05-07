@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "Resources": [
+      {
+        "TargetService": {
+          "Type": "AWS::ECS::Service",
+          "Properties": {
+            "TaskDefinition": "taskdef_final.json",
+            "LoadBalancerInfo": {
+              "ContainerName": "web-app-container1",
+              "ContainerPort": 80
+            }
+          }
+        }
+      }
+    ]
+  }
+  
