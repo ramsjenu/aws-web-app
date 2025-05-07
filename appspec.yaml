@@ -5,5 +5,5 @@ Resources:
       Properties:
         TaskDefinition: "arn:aws:ecs:eu-west-1:631204218401:task-definition/WebAppBGNTaskDefinition:2"
         LoadBalancerInfo:
-          ContainerName: "web-app-container"
+          ContainerName: "web-app-container1"
           ContainerPort: 80
