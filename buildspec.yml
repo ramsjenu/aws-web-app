@@ -23,10 +23,10 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:latest
       - echo Writing image definitions file...
-      - echo "IMAGE1_NAME=$IMAGE1_NAME" >> $CODEBUILD_SRC_DIR/.env
+      - sed "s|IMAGE1_NAME|$IMAGE_URI|" taskdef.json > taskdef_final.json
       - printf '[{"name":"web-app-container1","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
-      - cat taskdef.json
+      - cat taskdef_final.json
       - echo $IMAGE1_NAME >> imagename.json
       - cat imagename.json
 
@@ -34,7 +34,7 @@ phases:
 artifacts:
   files:
     - appspec.yaml
-    - taskdef.json
+    - taskdef_final.json
     - imageDefinitions.json
 
 
