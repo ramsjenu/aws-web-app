@@ -39,7 +39,7 @@ artifacts:
   files:
     - appspec.yaml
     - taskdef_final.json
-    - imagename.json
+    - imageDefinitions.json
   name: BuildArtifact
   discard-paths: yes
 
