@@ -27,6 +27,7 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"web-app-container1","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
+      - export IMAGE_URI
       - envsubst < taskdef.json > taskdef_final.json
       - cat taskdef_final.json
       - echo $IMAGE1_NAME >> imagename.json
