@@ -31,7 +31,7 @@ phases:
       - . $CODEBUILD_SRC_DIR/image_uri.env
       - envsubst < taskdef.json > taskdef_final.json
       - cat taskdef_final.json
-      - echo $IMAGE1_NAME >> imagename.json
+      - echo $IMAGE_URI >> imagename.json
       - cat imagename.json
 
 
@@ -39,6 +39,7 @@ artifacts:
   files:
     - appspec.yaml
     - taskdef_final.json
+    - imagename.json
   name: BuildArtifact
   discard-paths: yes
 
