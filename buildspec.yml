@@ -24,7 +24,7 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - echo Writing image definitions file...
       - echo "IMAGE1_NAME=$IMAGE1_NAME" >> $CODEBUILD_SRC_DIR/.env
-      - printf '[{"name":"web-app-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
+      - printf '[{"name":"web-app-container1","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
       - cat taskdef.json
       - echo $IMAGE1_NAME >> imagename.json
