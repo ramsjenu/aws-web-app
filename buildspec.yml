@@ -26,7 +26,7 @@ phases:
 
 artifacts:
   files:
-    - appspec.json
+    - appspec.yaml
     - taskdef_final.json
     - imagedefinitions.json
   name: BuildArtifact
