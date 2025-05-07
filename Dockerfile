@@ -1,5 +1,5 @@
 # Use the latest Ubuntu image
-FROM ubuntu:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 
 # Install dependencies
 RUN apt-get update
