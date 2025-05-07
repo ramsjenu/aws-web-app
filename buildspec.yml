@@ -39,7 +39,8 @@ artifacts:
   files:
     - appspec.yaml
     - taskdef_final.json
-
+  name: BuildArtifact
   discard-paths: yes
+
 
 
