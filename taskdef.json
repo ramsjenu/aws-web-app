@@ -2,6 +2,9 @@
     "family": "webapptd1",
     "executionRoleArn": "arn:aws:iam::631204218401:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "512",
+    "memory": "1024",
     "containerDefinitions": [
       {
         "name": "web-app-container1",

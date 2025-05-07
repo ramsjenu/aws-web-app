@@ -88,10 +88,10 @@
                         "configuration": {
                             "AppSpecTemplateArtifact": "SourceArtifact",
                             "AppSpecTemplatePath": "appspec.yaml",
-                            "ApplicationName": "webapp-bg",
-                            "DeploymentGroupName": "dg-webapp-bg",
+                            "ApplicationName": "AppECS-myECSCluster-webapptd1-service-new",
+                            "DeploymentGroupName": "DgpECS-myECSCluster-webapptd1-service-new",
                             "Image1ArtifactName": "BuildArtifact",
-                            "Image1ContainerName": "web-app-container",
+                            "Image1ContainerName": "web-app-container1",
                             "TaskDefinitionTemplateArtifact": "SourceArtifact",
                             "TaskDefinitionTemplatePath": "taskdef.json"
                         },
@@ -109,8 +109,9 @@
                 ]
             }
         ],
-        "version": 17,
+        "version": 47,
         "executionMode": "QUEUED",
         "pipelineType": "V2"
     }
+  
 }
