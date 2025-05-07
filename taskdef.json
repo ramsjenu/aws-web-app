@@ -5,7 +5,7 @@
     "containerDefinitions": [
       {
         "name": "web-app-container1",
-        "image": "631204218401.dkr.ecr.eu-west-1.amazonaws.com/web-app-repo",
+        "image": "IMAGE1_NAME",
         "cpu": 0,
         "portMappings": [
           {
