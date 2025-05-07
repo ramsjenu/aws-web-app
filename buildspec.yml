@@ -27,7 +27,8 @@ phases:
       - printf '[{"name":"web-app-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
       - cat taskdef.json
-      - echo $IMAGE1_NAME
+      - echo $IMAGE1_NAME >> imagename.json
+      - cat imagename.json
 
 
 artifacts:
