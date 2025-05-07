@@ -17,6 +17,7 @@ phases:
       - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
       - echo "IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG"
       - echo "IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG" >> $CODEBUILD_SRC_DIR/image_uri.env
+      - export IMAGE_URI
 
   post_build:
     commands:
@@ -27,7 +28,7 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"web-app-container1","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
-      - export IMAGE_URI
+      - source $CODEBUILD_SRC_DIR/image_uri.env
       - envsubst < taskdef.json > taskdef_final.json
       - cat taskdef_final.json
       - echo $IMAGE1_NAME >> imagename.json
