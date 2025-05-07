@@ -28,7 +28,7 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"web-app-container1","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
-      - source $CODEBUILD_SRC_DIR/image_uri.env
+      - . $CODEBUILD_SRC_DIR/image_uri.env
       - envsubst < taskdef.json > taskdef_final.json
       - cat taskdef_final.json
       - echo $IMAGE1_NAME >> imagename.json
