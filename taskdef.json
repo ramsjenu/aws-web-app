@@ -6,7 +6,8 @@
     {
       "name": "web-app-container1",
       "image": "$IMAGE_URI",
-      "cpu": 0,
+      "cpu": "512",
+      "memory": "1024",
       "portMappings": [
         {
           "containerPort": 80,
