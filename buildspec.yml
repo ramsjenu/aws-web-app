@@ -41,6 +41,7 @@ artifacts:
     - appspec.yaml
     - taskdef_json.json
     - imageDefinitions.json
+  name: BuildArtifact
   discard-paths: yes
 
 
