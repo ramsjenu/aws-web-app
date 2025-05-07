@@ -7,7 +7,8 @@ phases:
       - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 631204218401.dkr.ecr.eu-west-1.amazonaws.com
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - REPOSITORY_URI=631204218401.dkr.ecr.eu-west-1.amazonaws.com/web-app-repo
-      - export IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
+      - IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
+      - export IMAGE_URI
       - echo "Built image URI: $IMAGE_URI"
 
   build:
