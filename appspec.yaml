@@ -3,15 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: 
-          Family: WebAppBGNTaskDefinition
-          ContainerDefinitions:
-            - Name: "web-app-container"
-              Image: "$IMAGE1_NAME"
-              Cpu: 0
-              Memory: 512
-              Essential: true
-              PortMappings:
-                - ContainerPort: 80
-
-
+        TaskDefinition: "arn:aws:ecs:eu-west-1:631204218401:task-definition/WebAppBGNTaskDefinition:1"
+        LoadBalancerInfo:
+          ContainerName: "web-app-container"
+          ContainerPort: 80
