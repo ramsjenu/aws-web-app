@@ -40,7 +40,7 @@ artifacts:
   files:
     - appspec.yaml
     - taskdef.json
-    - imageDetail.json
+    - imageDefinitions.json
   discard-paths: yes
 
 
