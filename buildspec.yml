@@ -11,6 +11,7 @@ phases:
       - IMAGE_URI=$(cat imagedefinitions.json | jq -r '.[0].imageUri')
       - echo "Image URI is $IMAGE_URI"
       - export IMAGE_URI
+      - echo IMAGE_URI=$IMAGE_URI
 
   build:
     commands:
@@ -26,7 +27,7 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:latest
       - echo Writing image definitions file...
-      - sed "s|IMAGE1_NAME|$IMAGE_URI|" taskdef.json > taskdef_final.json
+      - envsubst < taskdef.json > taskdef_final.json
       - printf '[{"name":"web-app-container1","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
       - cat taskdef_final.json
