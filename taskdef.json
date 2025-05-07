@@ -1,5 +1,5 @@
 {
-    "family": "WebAppBGNTaskDefinition",
+    "family": "webapptd1",
     "executionRoleArn": "arn:aws:iam::631204218401:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "containerDefinitions": [
@@ -18,7 +18,7 @@
         "logConfiguration": {
           "logDriver": "awslogs",
           "options": {
-            "awslogs-group": "/ecs/WebAppBGNTaskDefinition",
+            "awslogs-group": "/ecs/webapptd1",
             "awslogs-region": "eu-west-1",
             "awslogs-stream-prefix": "ecs"
           }
