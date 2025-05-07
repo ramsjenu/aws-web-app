@@ -3,7 +3,15 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        LoadBalancerInfo:
-          ContainerName: "web-app-container"
-          ContainerPort: 80
+        TaskDefinition: 
+          Family: WebAppBGNTaskDefinition
+          ContainerDefinitions:
+            - Name: "web-app-container"
+              Image: "$IMAGE1_NAME"
+              Cpu: 0
+              Memory: 512
+              Essential: true
+              PortMappings:
+                - ContainerPort: 80
+
 
