@@ -10,7 +10,7 @@ phases:
       - IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
       - CONTAINER_NAME="web-app-container1"
       - CONTAINER_PORT=80
-      - $TASK_DEF_NAME"webapptd1"
+      - TASK_DEF_NAME"webapptd1"
 
   build:
     commands:
