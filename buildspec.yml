@@ -27,7 +27,7 @@ phases:
         echo "  - TargetService:" >> appspec.yaml
         echo "      Type: AWS::ECS::Service" >> appspec.yaml
         echo "      Properties:" >> appspec.yaml
-        echo "        TaskDefinition: $TASK_DEF_NAME" >> appspec.yaml  # Reference the task definition
+        echo "        TaskDefinition: webapptd1" >> appspec.yaml  
         echo "        LoadBalancerInfo:" >> appspec.yaml
         echo "          ContainerName: \"$CONTAINER_NAME\"" >> appspec.yaml
         echo "          ContainerPort: $CONTAINER_PORT" >> appspec.yaml
