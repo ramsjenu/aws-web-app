@@ -9,6 +9,9 @@ phases:
       - REPOSITORY_URI=631204218401.dkr.ecr.eu-west-1.amazonaws.com/web-app-repo
       - IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
       - echo $IMAGE_URI
+      - task_definition="webapptd1"                        # <-- ADD THIS
+      - container_name="web-app-container1"               # <-- ADD THIS
+      - container_port=80   
 
   build:
     commands:
