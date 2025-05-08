@@ -3,7 +3,7 @@
   "containerDefinitions": [
       {
           "name": "web-app-container1",
-          "image": "<IMAGE1_NAME>",
+          "image": "IMAGE1_NAME",
           "portMappings": [
               {
                   "name": "web-app-container1-80-tcp",
