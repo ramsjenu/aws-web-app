@@ -10,8 +10,6 @@ phases:
       - IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
       - CONTAINER_NAME="web-app-container1"
       - CONTAINER_PORT=80
-      - TASK_DEF_NAME="webapptd1"
-      - echo "TASK_DEF_NAME is: $TASK_DEF_NAME"
     
   build:
     commands:
@@ -22,7 +20,7 @@ phases:
       - docker push $IMAGE_URI
       - echo "Fetching ECS task definition..."
 
-      - aws ecs describe-task-definition --task-definition $TASK_DEF_NAME --query taskDefinition --output json > template.json
+      - aws ecs describe-task-definition --task-definition webapptd1 --query taskDefinition --output json > template.json
       - |
         jq --arg IMAGE "$IMAGE_URI" --arg NAME "$CONTAINER_NAME" \
         '.containerDefinitions |= map(if .name == $NAME then .image = $IMAGE else . end)' \
