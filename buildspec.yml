@@ -22,8 +22,8 @@ phases:
 
       - aws ecs describe-task-definition --task-definition webapptd1 --query taskDefinition --output json > template.json
       - |
-        jq --arg IMAGE "$IMAGE_URI" --arg NAME "$CONTAINER_NAME" \
-        '.containerDefinitions |= map(if .name == $NAME then .image = $IMAGE else . end)' \
+        jq --arg NAME "$CONTAINER_NAME" \
+        '(.containerDefinitions[] | select(.name == $NAME) | .image) |= "<IMAGE1_NAME>"' \
         template.json > taskdef.json
       - |
         echo "version: 0.0" > appspec.yaml
