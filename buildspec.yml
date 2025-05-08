@@ -21,6 +21,9 @@ phases:
   post_build:
     commands:
       - echo "[{\"name\":\"web-app-container1\",\"imageUri\":\"$IMAGE_URI\"}]" > imagedefinitions.json
+      - cat imagedefinitions.json
+      - cat taskdef.json
+      - cat appsec.yaml
 
 artifacts:
   files:
