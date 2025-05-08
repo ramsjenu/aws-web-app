@@ -20,10 +20,23 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $IMAGE_URI
 
+      - echo "Generating appspec.yaml..."
+      - |
+        echo "version: 0.0" > appspec.yaml
+        echo "Resources:" >> appspec.yaml
+        echo "  - TargetService:" >> appspec.yaml
+        echo "      Type: AWS::ECS::Service" >> appspec.yaml
+        echo "      Properties:" >> appspec.yaml
+        echo "        TaskDefinition: taskdef.json" >> appspec.yaml  
+        echo "        LoadBalancerInfo:" >> appspec.yaml
+        echo "          ContainerName: \"$CONTAINER_NAME\"" >> appspec.yaml
+        echo "          ContainerPort: $CONTAINER_PORT" >> appspec.yaml
+
   post_build:
     commands:
       - echo "[{\"name\":\"$CONTAINER_NAME\",\"imageUri\":\"$IMAGE_URI\"}]" > imagedefinitions.json
       - cat imagedefinitions.json
+      - cat appspec.yaml
 
 artifacts:
   files:
