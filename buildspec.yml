@@ -19,25 +19,22 @@ phases:
       - docker tag $REPOSITORY_URI:latest $IMAGE_URI
       - docker push $REPOSITORY_URI:latest
       - docker push $IMAGE_URI
-
-      - echo "Fetching task definition..."
+      - echo "Fetching ECS task definition..."
       - aws ecs describe-task-definition --task-definition $TASK_DEF_NAME --query taskDefinition --output json > template.json
-
-      - echo "Injecting image into task definition..."
-      - jq --arg IMAGE "$IMAGE_URI" --arg NAME "$CONTAINER_NAME" \
-          '.containerDefinitions |= map(if .name == $NAME then .image = $IMAGE else . end)' \
-          template.json > taskdef.json
-
-      - echo "Generating appspec.yaml..."
-      - echo "version: 0.0" > appspec.yaml
-      - echo "Resources:" >> appspec.yaml
-      - echo "  - TargetService:" >> appspec.yaml
-      - echo "      Type: AWS::ECS::Service" >> appspec.yaml
-      - echo "      Properties:" >> appspec.yaml
-      - echo "        TaskDefinition: taskdef.json" >> appspec.yaml
-      - echo "        LoadBalancerInfo:" >> appspec.yaml
-      - echo "          ContainerName: \"$CONTAINER_NAME\"" >> appspec.yaml
-      - echo "          ContainerPort: $CONTAINER_PORT" >> appspec.yaml
+      - |
+        jq --arg IMAGE "$IMAGE_URI" --arg NAME "$CONTAINER_NAME" \
+        '.containerDefinitions |= map(if .name == $NAME then .image = $IMAGE else . end)' \
+        template.json > taskdef.json
+      - |
+        echo "version: 0.0" > appspec.yaml
+        echo "Resources:" >> appspec.yaml
+        echo "  - TargetService:" >> appspec.yaml
+        echo "      Type: AWS::ECS::Service" >> appspec.yaml
+        echo "      Properties:" >> appspec.yaml
+        echo "        TaskDefinition: taskdef.json" >> appspec.yaml
+        echo "        LoadBalancerInfo:" >> appspec.yaml
+        echo "          ContainerName: \"$CONTAINER_NAME\"" >> appspec.yaml
+        echo "          ContainerPort: $CONTAINER_PORT" >> appspec.yaml
 
   post_build:
     commands:
