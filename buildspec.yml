@@ -10,7 +10,7 @@ phases:
       - IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
       - CONTAINER_NAME="web-app-container1"
       - CONTAINER_PORT=80
-    
+
   build:
     commands:
       - echo "Building and pushing Docker image..."
@@ -18,33 +18,14 @@ phases:
       - docker tag $REPOSITORY_URI:latest $IMAGE_URI
       - docker push $REPOSITORY_URI:latest
       - docker push $IMAGE_URI
-      - echo "Fetching ECS task definition..."
-
-      - aws ecs describe-task-definition --task-definition webapptd1 --query taskDefinition --output json > template.json
-      - |
-        jq --arg NAME "$CONTAINER_NAME" \
-        '(.containerDefinitions[] | select(.name == $NAME) | .image) |= "<IMAGE1_NAME>"' \
-        template.json > taskdef.json
-      - |
-        echo "version: 0.0" > appspec.yaml
-        echo "Resources:" >> appspec.yaml
-        echo "  - TargetService:" >> appspec.yaml
-        echo "      Type: AWS::ECS::Service" >> appspec.yaml
-        echo "      Properties:" >> appspec.yaml
-        echo "        TaskDefinition: taskdef.json" >> appspec.yaml
-        echo "        LoadBalancerInfo:" >> appspec.yaml
-        echo "          ContainerName: \"$CONTAINER_NAME\"" >> appspec.yaml
-        echo "          ContainerPort: $CONTAINER_PORT" >> appspec.yaml
 
   post_build:
     commands:
       - echo "[{\"name\":\"$CONTAINER_NAME\",\"imageUri\":\"$IMAGE_URI\"}]" > imagedefinitions.json
       - cat imagedefinitions.json
       - cat taskdef.json
-      - cat appspec.yaml
 
 artifacts:
   files:
     - taskdef.json
-    - appspec.yaml
     - imagedefinitions.json
