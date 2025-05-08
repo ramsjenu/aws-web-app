@@ -39,6 +39,7 @@ phases:
   post_build:
     commands:
       - echo "[{\"name\":\"$CONTAINER_NAME\",\"imageUri\":\"$IMAGE_URI\"}]" > imagedefinitions.json
+      - cat imagedefinitions.json
       - cat taskdef.json
       - cat appspec.yaml
 
